@@ -1,2 +1,2 @@
 # meteorGuestbook
-Basic form with extraordinary capabilities
+A guestbook app using meteor.

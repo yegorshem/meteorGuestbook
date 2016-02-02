@@ -1,0 +1,40 @@
+<template name="layout">
+    <body>
+    <div class="container">
+        <h1>Welcome to Yegor's Guestbook!</h1>
+
+        {{> yield}}
+    </div>
+    </body>
+</template>
+
+<template name="guestBook">
+
+    <form>
+        <div class="form-group">
+            <label for="guestName">Name</label>
+            <input type="text" name="guestName"/>
+        </div>
+
+        <div class="form-group">
+            <label for="guestBookMessage">Message</label>
+            <textarea name="guestBookMessage" cols="30" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Post Message</button>
+    </form>
+
+
+    {{#each messages}}
+        <p><a href="{{pathFor route='message.show'}}"> {{name}}  {{message}} - {{createdOn}}</a></p>
+    {{/each}}
+
+</template>
+
+<template name="about">
+    <p>This is an app created for IT 328 in Meteor.</p>
+</template>
+
+<template name="message">
+    <p>{{name}}: {{message}}</p>
+</template>
