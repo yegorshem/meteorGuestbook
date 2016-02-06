@@ -1,7 +1,9 @@
 <template name="layout">
     <body>
     <div class="container">
+        <br>
         <h1>Welcome to Yegor's Guestbook!</h1>
+        <hr>
 
         {{> yield}}
     </div>
@@ -21,9 +23,10 @@
             <textarea name="guestBookMessage" cols="30" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Post Message</button>
+        <button type="submit" class="btn btn-lg btn-primary">Post Message</button>
     </form>
 
+    <br>
 
     {{#each messages}}
         <p><a href="{{pathFor route='message.show'}}"> {{name}}  {{message}} - {{createdOn}}</a></p>
