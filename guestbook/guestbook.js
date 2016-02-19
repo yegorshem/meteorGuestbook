@@ -25,6 +25,13 @@ Router.route('/messages/:_id', function () {
 
 if (Meteor.isClient) {
 
+    Accounts.ui.config({
+        //options are listed in book on p. 135
+        //USERNAME_AND_EMAIL, USERNAME_AND_OPTONAL_EMAIL,
+        //USERNAME_ONLY< EMAIL_ONLY
+        passwordSignupFields: "USERNAME_ONLY"
+    });
+
     Meteor.subscribe("messages");
 
     Template.guestBook.helpers({
@@ -43,27 +50,27 @@ if (Meteor.isClient) {
 
             var messageText = messageBox.val();
 
-            var nameBox = $(event.target).find('input[name=guestName]');
-            var nameText = nameBox.val();
+            //var nameBox = $(event.target).find('input[name=guestName]');
+            //var nameText = nameBox.val();
 
-            if (nameText.length > 0 && messageText.length > 0) {
+            if (messageText.length > 0) {
 
                 Messages.insert(
                     {
-                        name: nameText,
+                        name: Meteor.user().username,
                         message: messageText,
                         createdOn: Date.now()
                     }
                 );
             }
             else {
-                //alert("Name and Message are both required.")
-                Console(messageBox);
+                alert("Please enter a message");
+                //Console(messageBox);
                 //messageBox.addClass('control-group error');
             }
 
 
-            alert("Name is " + nameText + ", message: " + messageText);
+            //alert("Name is " + nameText + ", message: " + messageText);
         }
 
     });
